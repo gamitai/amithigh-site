@@ -581,6 +581,8 @@
     .callbar .btn { flex: 1; padding: 14px 10px; }
     .callbar .btn.sq { flex: none; width: 52px; padding: 0; }
   }
+  /* Computers can't dial: hide the Call buttons there (WhatsApp stays; the number is still shown as text) */
+  @media (hover: hover) and (pointer: fine) { .btn[href^="tel:"] { display: none; } }
   html.calm *, html.calm *::before, html.calm *::after { animation: none !important; }
   html:not(.js) *, html:not(.js) *::before { animation: none !important; }
   /* English (left-to-right) */

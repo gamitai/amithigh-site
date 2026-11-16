@@ -592,6 +592,8 @@
     .callbar .btn { flex: 1; padding: 14px 10px; }
     .callbar .btn.sq { flex: none; width: 52px; padding: 0; }
   }
+  /* Computers can't dial: hide the Call buttons there (WhatsApp stays; the number is still shown as text) */
+  @media (hover: hover) and (pointer: fine) { .btn[href^="tel:"] { display: none; } }
   html.calm *, html.calm *::before, html.calm *::after { animation: none !important; }
   html:not(.js) *, html:not(.js) *::before { animation: none !important; }
 </style>
@@ -689,7 +691,10 @@
         <p class="eyebrow">אודות</p>
         <h2 data-split>אומרים שקשה לרצות את כולם? תשאירו את זה&nbsp;לי.</h2>
         <div class="body" data-reveal>
-          <p>האנרגיה, ההתלהבות והשמחה שאני מביא איתי: זה משהו שחייבים לדבר עליו. החיבור עם הקהל זה כל הסיפור מבחינתי. כל מה שאתם צריכים זה להגיד לי איך דמיינתם את האירוע,</p>
+          <p>לרשום כמה שנים אני מנגן, על איזה במות או מדינות ניגנתי ובכלל כל הסיפור שלי עם מוזיקה – נשאיר למקום אחר.</p>
+          <p>האנרגיה, ההתלהבות והשמחה שאני מביא איתי – זה משהו שחייבים לדבר עליו.</p>
+          <p>החיבור עם הקהל זה כל הסיפור מבחינתי.</p>
+          <p>כל מה שאתם צריכים זה להגיד לי איך דמיינתם את האירוע –</p>
         </div>
         <p class="glow" data-glow>ומשם, ביחד, נעשה&nbsp;קסמים.</p>
         <p class="signoff">גיא אמיתי <span>DJ Amithigh</span></p>
