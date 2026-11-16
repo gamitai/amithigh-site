@@ -903,10 +903,10 @@
 <a class="wa-float" target="_blank" href="https://wa.me/972525353259?text=Hi%20Guy%20Amithigh%2C%20what%27s%20up%3F%20We%27re%20getting%20married%20soon%20and%20looking%20for%20a%20DJ%20%3A%29" rel="noopener" aria-label="WhatsApp"><svg class="i f"><use href="#wa"/></svg></a>
 
 <script>
-  // Hero video: a lighter file on phones and with Data Saver
+  // Hero video: full 720p file everywhere; the lighter file only with Data Saver or a slow (2G/3G) connection
   (() => {
     const v = document.querySelector('.hero-video'); if (!v) return;
-    const small = matchMedia('(max-width: 760px)').matches || (navigator.connection && navigator.connection.saveData);
+    const c = navigator.connection, small = !!(c && (c.saveData || /(^|-)(slow-2g|2g|3g)$/.test(c.effectiveType || '')));
     const go = () => { v.src = small ? v.dataset.srcM : v.dataset.src; v.play().catch(() => {}); };
     if (document.readyState === 'complete') go(); else addEventListener('load', () => setTimeout(go, 200), { once: true });
   })();

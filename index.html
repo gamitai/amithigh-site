@@ -909,10 +909,10 @@
 <a class="wa-float" target="_blank" href="https://wa.me/972525353259?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%90%20%D7%90%D7%9E%D7%99%D7%AA%D7%99%20%D7%9E%D7%94%20%D7%A7%D7%95%D7%A8%D7%94%3F%20%D7%90%D7%A0%D7%97%D7%A0%D7%95%20%D7%9E%D7%AA%D7%97%D7%AA%D7%A0%D7%99%D7%9D%20%D7%91%D7%A7%D7%A8%D7%95%D7%91%20%D7%95%D7%9E%D7%97%D7%A4%D7%A9%D7%99%D7%9D%20%D7%93%D7%99%20%D7%92%D7%99%D7%99%20%3A%29" rel="noopener" aria-label="וואטסאפ"><svg class="i f"><use href="#wa"/></svg></a>
 
 <script>
-  // Hero video: a lighter file on phones and with Data Saver
+  // Hero video: full 720p file everywhere; the lighter file only with Data Saver or a slow (2G/3G) connection
   (() => {
     const v = document.querySelector('.hero-video'); if (!v) return;
-    const small = matchMedia('(max-width: 760px)').matches || (navigator.connection && navigator.connection.saveData);
+    const c = navigator.connection, small = !!(c && (c.saveData || /(^|-)(slow-2g|2g|3g)$/.test(c.effectiveType || '')));
     const go = () => { v.src = small ? v.dataset.srcM : v.dataset.src; v.play().catch(() => {}); };
     if (document.readyState === 'complete') go(); else addEventListener('load', () => setTimeout(go, 200), { once: true });
   })();
