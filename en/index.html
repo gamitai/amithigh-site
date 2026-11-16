@@ -576,6 +576,25 @@
     footer .cols { grid-template-columns: 1fr; gap: 36px; }
     footer .bottom, footer .credit { font-size: 16px; }
   }
+  /* Phones: hero and About are compact so each fits on one screen (video not cut off) */
+  @media (max-width: 600px) {
+    .hero { min-height: 100svh; padding: 84px 0 24px; }
+    .hero .wrap { gap: 16px; }
+    .hero h1 { margin-bottom: 10px; }
+    .hero .lead { margin-bottom: 10px !important; }
+    .hero .actions { gap: 10px; }
+    .hero .actions .btn { padding: 13px 18px; }
+    .stage { width: min(54%, 210px); margin-top: 4px; }
+    .stage .print { padding: 8px 8px 10px; }
+    .about { padding: 44px 0; }
+    .about .wrap { gap: 24px; }
+    .about h2 { margin-bottom: 14px; }
+    .about .body { font-size: 16px; line-height: 1.55; }
+    .about .body p + p { margin-top: 8px; }
+    .glow { font-size: 34px; }
+    .signoff { margin-top: 12px; }
+    .about .print { width: min(46%, 160px); }
+  }
   /* Computers can't dial: hide the Call buttons there (WhatsApp stays; the number is still shown as text) */
   @media (hover: hover) and (pointer: fine) { .btn[href^="tel:"] { display: none; } }
   .wa-float { display: none; }
