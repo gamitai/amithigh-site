@@ -585,9 +585,9 @@
   @media (hover: hover) and (pointer: fine) { .btn[href^="tel:"] { display: none; } }
   .wa-float { display: none; }
   @media (hover: hover) and (pointer: fine) {
-    .wa-float { position: fixed; left: 24px; bottom: 24px; z-index: 35; display: inline-flex !important; align-items: center; gap: 10px; padding: 16px 22px; border-radius: 999px; background: var(--red-dark); color: var(--white); font-weight: 800; box-shadow: 0 16px 36px -10px rgba(0,0,0,.5); transition: background .3s, transform .3s var(--ease); }
-    .wa-float:hover { background: #A82820; transform: translateY(-2px); }
-    .wa-float .i { width: 24px; height: 24px; }
+    .wa-float { position: fixed; left: 24px; bottom: 24px; z-index: 35; display: grid !important; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: #25D366; color: #fff; box-shadow: 0 14px 30px -8px rgba(0,0,0,.45); transition: background .3s, transform .3s var(--ease); }
+    .wa-float:hover { background: #1EBE5A; transform: translateY(-2px) scale(1.05); }
+    .wa-float .i { width: 32px; height: 32px; }
   }
   html.calm *, html.calm *::before, html.calm *::after { animation: none !important; }
   html:not(.js) *, html:not(.js) *::before { animation: none !important; }
@@ -878,7 +878,7 @@
   <img id="lb-img" alt="">
 </dialog>
 
-<a class="wa-float" target="_blank" href="https://wa.me/972525353259" rel="noopener"><svg class="i f"><use href="#wa"/></svg>WhatsApp</a>
+<a class="wa-float" target="_blank" href="https://wa.me/972525353259" rel="noopener" aria-label="WhatsApp"><svg class="i f"><use href="#wa"/></svg></a>
 <div class="callbar">
   <a target="_blank" class="btn btn-red" href="https://wa.me/972525353259" rel="noopener"><svg class="i f"><use href="#wa"/></svg>WhatsApp</a>
   <a class="btn btn-line" href="tel:+972525353259"><svg class="i"><use href="#phone"/></svg>Call</a>
