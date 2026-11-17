@@ -713,7 +713,7 @@
       </div>
       <div class="stage" data-hero-photo>
         <svg class="neon" viewBox="0 0 100 94" aria-hidden="true"><path d="M50 4 97 90H3z"/></svg>
-        <figure class="print"><video class="hero-video" data-src="media/hero.mp4" data-src-m="media/hero-m.mp4" poster="media/poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="DJ Amithigh מנגן באירוע"></video></figure>
+        <figure class="print"><video class="hero-video" src="media/hero.mp4" data-src-m="media/hero-m.mp4" poster="media/poster.webp" autoplay muted loop playsinline preload="auto" aria-label="DJ Amithigh מנגן באירוע"></video></figure>
       </div>
     </div>
   </section>
@@ -912,12 +912,19 @@
 <a class="wa-float" target="_blank" href="https://wa.me/972525353259?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%90%20%D7%90%D7%9E%D7%99%D7%AA%D7%99%20%D7%9E%D7%94%20%D7%A7%D7%95%D7%A8%D7%94%3F%20%D7%90%D7%A0%D7%97%D7%A0%D7%95%20%D7%9E%D7%AA%D7%97%D7%AA%D7%A0%D7%99%D7%9D%20%D7%91%D7%A7%D7%A8%D7%95%D7%91%20%D7%95%D7%9E%D7%97%D7%A4%D7%A9%D7%99%D7%9D%20%D7%93%D7%99%20%D7%92%D7%99%D7%99%20%3A%29" rel="noopener" aria-label="וואטסאפ"><svg class="i f"><use href="#wa"/></svg></a>
 
 <script>
-  // Hero video: full 720p file everywhere; the lighter file only with Data Saver or a slow (2G/3G) connection
+  // Hero video: starts right away (the file is in the HTML), full 720p; the lighter file only with Data Saver or a slow (2G/3G) connection.
+  // If the browser blocks autoplay (e.g. iPhone Low Power Mode), it starts on the first touch or tap instead of showing a play button.
   (() => {
     const v = document.querySelector('.hero-video'); if (!v) return;
-    const c = navigator.connection, small = !!(c && (c.saveData || /(^|-)(slow-2g|2g|3g)$/.test(c.effectiveType || '')));
-    const go = () => { v.src = small ? v.dataset.srcM : v.dataset.src; v.play().catch(() => {}); };
-    if (document.readyState === 'complete') go(); else addEventListener('load', () => setTimeout(go, 200), { once: true });
+    const c = navigator.connection;
+    if (c && (c.saveData || /(^|-)(slow-2g|2g|3g)$/.test(c.effectiveType || ''))) v.src = v.dataset.srcM;
+    v.muted = true; v.defaultMuted = true; v.playsInline = true;
+    const play = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    play();
+    v.addEventListener('canplay', () => { if (v.paused) play(); }, { once: true });
+    const resume = () => { if (v.paused) play(); };
+    ['touchstart', 'touchend', 'pointerdown', 'click', 'keydown'].forEach(t => addEventListener(t, resume, { passive: true }));
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) resume(); });
   })();
 
   // Menu button: opens the panel, closes on a link, on Escape and on a second tap (works without motion libraries)
